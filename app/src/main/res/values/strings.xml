@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Voluntarios</string>
+    <string name="red_de_apoyo_nmayor">Red de Apoyo\nMayor</string>
+    <string name="main_subtitulo">Conectando adultos mayores con voluntarios dispuestos a ayudar.</string>
+    <string name="main_seleccion">¿Cómo quieres participar hoy?</string>
+    <string name="main_btn_mayor">👴 NECESITO AYUDA</string>
+    <string name="main_btn_voluntario">🤝 QUIERO SER VOLUNTARIO</string>
+    <string name="main_footer">Red Cuidar • Proyecto Social v1.0</string>
+
+    <!-- Login -->
+    <string name="login_titulo">Ingreso Voluntarios</string>
+    <string name="login_subtitulo">¡Gracias por querer ayudar!</string>
+    <string name="login_hint_email">Correo electrónico</string>
+    <string name="login_hint_password">Contraseña</string>
+    <string name="login_btn_ingresar">Iniciar Sesión</string>
+    <string name="login_btn_registro">¿No tienes cuenta? Regístrate aquí</string>
+    <string name="login_btn_volver">Volver al Inicio</string>
+
+    <!-- Registro -->
+    <string name="reg_titulo">Nuevo Registro</string>
+    <string name="reg_subtitulo">Únete a nuestra red de apoyo</string>
+    <string name="reg_hint_nombre">Nombre completo</string>
+    <string name="reg_hint_email">Correo electrónico</string>
+    <string name="reg_hint_telefono">Teléfono de contacto</string>
+    <string name="reg_hint_password">Contraseña de seguridad</string>
+    <string name="reg_btn_registrar">Registrar Cuenta</string>
+    <string name="reg_btn_login">¿Ya tienes cuenta? Ingresa aquí</string>
+    <string name="reg_btn_volver">Volver al Inicio</string>
 </resources>

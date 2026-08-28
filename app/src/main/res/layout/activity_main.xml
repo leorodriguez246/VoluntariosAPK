@@ -5,15 +5,121 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_light"
+    android:padding="24dp"
     tools:context="com.redvoluntarios.MainActivity">
 
+    <!-- 1. CABECERA CON ESTILO -->
+    <LinearLayout
+        android:id="@+id/headerContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtBienvenida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/red_de_apoyo_nmayor"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="@color/primary_blue"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/txtSubtitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/main_subtitulo"
+            android:textSize="18sp"
+            android:textColor="@color/text_secondary"
+            android:textAlignment="center"
+            android:lineSpacingExtra="4sp" />
+    </LinearLayout>
+
+    <!-- 2. SECCIÓN DE SELECCIÓN -->
     <TextView
+        android:id="@+id/txtSeleccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="@string/main_seleccion"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/text_primary"
+        app:layout_constraintTop_toBottomOf="@id/headerContainer"
+        app:layout_constraintBottom_toTopOf="@+id/btnRolMayor"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginTop="40dp" />
+
+    <!-- 3. BOTONES DE ACCIÓN (Material3) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRolMayor"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/main_btn_mayor"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/secondary_green"
+        app:cornerRadius="20dp"
+        app:icon="@android:drawable/ic_menu_help"
+        app:iconGravity="textStart"
+        app:iconSize="28dp"
+        app:iconPadding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/txtSeleccion"
+        app:layout_constraintBottom_toTopOf="@+id/btnRolVoluntario" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRolVoluntario"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/main_btn_voluntario"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/primary_blue"
+        app:cornerRadius="20dp"
+        app:icon="@android:drawable/ic_menu_myplaces"
+        app:iconGravity="textStart"
+        app:iconSize="28dp"
+        app:iconPadding="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnRolMayor"
+        app:layout_constraintBottom_toTopOf="@+id/footerContainer" />
+
+    <!-- 4. FOOTER INFORMATIVO -->
+    <LinearLayout
+        android:id="@+id/footerContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <View
+            android:layout_width="100dp"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/txtFooter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_footer"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:textAlignment="center" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
