@@ -3,10 +3,8 @@ plugins {
 }
 
 android {
-    namespace 'com.voluntarios'
-    compileSdk {
-        version = release(37)
-    }
+    namespace 'com.redvoluntarios'
+    compileSdk 37
 
     defaultConfig {
         applicationId "com.voluntarios"

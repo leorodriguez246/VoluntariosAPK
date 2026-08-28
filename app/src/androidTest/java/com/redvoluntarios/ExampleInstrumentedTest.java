@@ -1,4 +1,4 @@
-package com.voluntarios;
+package com.redvoluntarios;
 
 import android.content.Context;
 
