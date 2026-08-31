@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Creamos el Intent explícito para ir de MainActivity a LoginVoluntarioActivity
                 Intent intent = new Intent(MainActivity.this, LoginVoluntarioActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
         });

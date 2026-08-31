@@ -76,12 +76,12 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
                 finish();
             }
         });
-
         // Intent para abrir el Registro
         txtIrARegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginVoluntarioActivity.this, RegistroVoluntarioActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
             }
         });

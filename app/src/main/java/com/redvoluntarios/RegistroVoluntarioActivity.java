@@ -21,6 +21,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_registro_voluntario);
 
         edtNombre = findViewById(R.id.edtRegNombre);
