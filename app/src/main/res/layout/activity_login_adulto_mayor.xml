@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT: activity_login_adulto_mayor.xml (ConstraintLayout)
+    ===========================================================================
+    Formulario de autenticación accesible para Adultos Mayores.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,8 +11,9 @@
     android:layout_height="match_parent"
     android:background="@color/background_light"
     android:padding="24dp"
-    tools:context=".LoginAdultoMayor">
+    tools:context=".vistas.adultomayor.LoginAdultoMayor">
 
+    <!-- SECCIÓN 1: ENCABEZADO Y TÍTULOS -->
     <TextView
         android:id="@+id/txtLoginAmTitulo"
         android:layout_width="wrap_content"
@@ -35,6 +41,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtLoginAmTitulo" />
 
+    <!-- SECCIÓN 2: FORMULARIO DE INGRESO (TextInputLayout) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilLoginAmRut"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -76,6 +83,7 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- SECCIÓN 3: BOTONES DE ACCIÓN PRINCIPAL Y NAVEGACIÓN -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLoginAmIngresar"
         android:layout_width="0dp"

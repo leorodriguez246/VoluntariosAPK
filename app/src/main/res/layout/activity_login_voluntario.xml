@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT: activity_login_voluntario.xml (ConstraintLayout)
+    ===========================================================================
+    Formulario de autenticación para voluntarios con controles TextInputLayout.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,8 +11,9 @@
     android:layout_height="match_parent"
     android:background="@color/background_light"
     android:padding="24dp"
-    tools:context=".LoginVoluntarioActivity">
+    tools:context=".vistas.voluntario.LoginVoluntarioActivity">
 
+    <!-- SECCIÓN 1: ENCABEZADO Y TÍTULOS -->
     <TextView
         android:id="@+id/txtLoginTitulo"
         android:layout_width="wrap_content"
@@ -33,7 +39,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtLoginTitulo" />
 
-    <!-- Formulario -->
+    <!-- SECCIÓN 2: FORMULARIO DE ACCESO (TextInputLayout + TextInputEditText) -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilLoginEmail"
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -73,6 +79,7 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- SECCIÓN 3: BOTONES DE ACCIÓN (MaterialButton) -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLoginIngresar"
         android:layout_width="0dp"

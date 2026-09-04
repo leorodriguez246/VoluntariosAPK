@@ -21,6 +21,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * PANTALLA: CrearSolicitudActivity
+ * ============================================================================
+ * Formulario accesible para la creación de solicitudes de ayuda.
+ * Ejemplifica el uso de:
+ *  - RadioGroup y RadioButton para la selección de nivel de prioridad.
+ *  - Spinner con ArrayAdapter para la selección de categoría.
+ */
 public class CrearSolicitudActivity extends AppCompatActivity {
 
     private RadioGroup rgPrioridad;
@@ -33,8 +41,10 @@ public class CrearSolicitudActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_crear_solicitud);
 
+        // Vinculación de controles
         rgPrioridad = findViewById(R.id.rgPrioridad);
         rbNormal = findViewById(R.id.rbPrioridadNormal);
         rbUrgente = findViewById(R.id.rbPrioridadUrgente);
@@ -43,7 +53,7 @@ public class CrearSolicitudActivity extends AppCompatActivity {
         btnEnviarSolicitud = findViewById(R.id.btnEnviarSolicitud);
         btnVolverInicio = findViewById(R.id.btnVolverInicioAm);
 
-        // Opciones del Spinner de categorías
+        // Poblado del Spinner usando un ArrayAdapter con el diseño desplegable estándar
         String[] categorias = {
                 "💊 Compra de Medicamentos",
                 "🛒 Compras de Mercadería",
@@ -54,6 +64,7 @@ public class CrearSolicitudActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, categorias);
         spCategoria.setAdapter(adapter);
 
+        // Evento Enviar Solicitud
         btnEnviarSolicitud.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,11 +74,12 @@ public class CrearSolicitudActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Captura del estado del RadioButton
                 String prioridad = rbUrgente.isChecked() ? "URGENTE" : "NORMAL";
                 String categoriaSeleccionada = spCategoria.getSelectedItem().toString();
                 String fechaActual = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(new Date());
 
-                // Crear objeto solicitud
+                // Creación de la entidad Solicitud con metadatos
                 Solicitud nuevaSolicitud = new Solicitud(
                         1, 101, "María González", "+56 9 1234 5678",
                         "Av. Matta 450, Santiago", prioridad, categoriaSeleccionada, desc,
@@ -78,7 +90,7 @@ public class CrearSolicitudActivity extends AppCompatActivity {
                         "¡Solicitud enviada! Conectando con voluntarios de tu zona...",
                         Toast.LENGTH_LONG).show();
 
-                // Regresar a la pantalla inicial
+                // Navegación de retorno al inicio
                 Intent intent = new Intent(CrearSolicitudActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

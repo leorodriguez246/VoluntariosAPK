@@ -14,6 +14,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.redvoluntarios.R;
 import com.redvoluntarios.vistas.principal.MainActivity;
 
+/**
+ * PANTALLA: RegistroAdultosActivity
+ * ============================================================================
+ * Formulario de registro simplificado para Adultos Mayores.
+ * Valida los datos personales básicos y la casilla de verificación de uso asistido.
+ */
 public class RegistroAdultosActivity extends AppCompatActivity {
 
     private EditText edtNombre, edtRut, edtTelefono, edtDireccion, edtPassword;
@@ -26,8 +32,10 @@ public class RegistroAdultosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_registro_adultos);
 
+        // Vinculación de vistas
         edtNombre = findViewById(R.id.edtRegAmNombre);
         edtRut = findViewById(R.id.edtRegAmRut);
         edtTelefono = findViewById(R.id.edtRegAmTelefono);
@@ -38,6 +46,7 @@ public class RegistroAdultosActivity extends AppCompatActivity {
         txtVolverLogin = findViewById(R.id.txtVolverAlLoginAm);
         txtVolverAlMain = findViewById(R.id.txtVolverAlMainAm);
 
+        // Botón Registrar Cuenta
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +55,7 @@ public class RegistroAdultosActivity extends AppCompatActivity {
                 String fono = edtTelefono.getText().toString().trim();
                 String pass = edtPassword.getText().toString().trim();
 
+                // Validaciones de ingreso
                 if (nombre.isEmpty()) { edtNombre.setError("Nombre obligatorio"); return; }
                 if (rut.isEmpty()) { edtRut.setError("RUT obligatorio"); return; }
                 if (fono.isEmpty()) { edtTelefono.setError("Teléfono obligatorio"); return; }
@@ -54,6 +64,7 @@ public class RegistroAdultosActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Validación de CheckBox
                 if (!chkTerminosAm.isChecked()) {
                     Toast.makeText(RegistroAdultosActivity.this,
                             "Debe aceptar los términos de uso asistido",
@@ -66,6 +77,7 @@ public class RegistroAdultosActivity extends AppCompatActivity {
             }
         });
 
+        // Botón volver al Login
         txtVolverLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +85,7 @@ public class RegistroAdultosActivity extends AppCompatActivity {
             }
         });
 
+        // Botón volver al Inicio principal
         txtVolverAlMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

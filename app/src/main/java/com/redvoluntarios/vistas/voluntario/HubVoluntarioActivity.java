@@ -18,6 +18,14 @@ import com.redvoluntarios.modelos.Solicitud;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PANTALLA: HubVoluntarioActivity (Panel Principal del Voluntario)
+ * ============================================================================
+ * Muestra el panel central del voluntario con:
+ *  - Encabezado con estado y botón de acceso al perfil.
+ *  - ProgressBar con avance de meta de voluntariado.
+ *  - RecyclerView con el listado dinámico de solicitudes entrantes.
+ */
 public class HubVoluntarioActivity extends AppCompatActivity {
 
     private ImageView imgAvatarHeader;
@@ -30,19 +38,21 @@ public class HubVoluntarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_hub_voluntario);
 
+        // Vinculación de vistas
         imgAvatarHeader = findViewById(R.id.imgAvatarHeader);
         btnEditarPerfilHeader = findViewById(R.id.btnEditarPerfilHeader);
         rvSolicitudesUrgentes = findViewById(R.id.rvSolicitudesUrgentes);
         pbMetaMensual = findViewById(R.id.pbMetaMensual);
         txtProgresoPorcentaje = findViewById(R.id.txtProgresoPorcentaje);
 
-        // Configuración de la barra de progreso
+        // Configuración de la barra de progreso (ProgressBar)
         pbMetaMensual.setProgress(75);
         txtProgresoPorcentaje.setText("75%");
 
-        // Navegación al Perfil
+        // Escuchador común para ir al Perfil de Usuario
         View.OnClickListener irAPerfilListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,14 +64,18 @@ public class HubVoluntarioActivity extends AppCompatActivity {
         imgAvatarHeader.setOnClickListener(irAPerfilListener);
         btnEditarPerfilHeader.setOnClickListener(irAPerfilListener);
 
-        // Configuración del RecyclerView nativo con SolicitudAdapter
+        // Configuración del RecyclerView: se asigna un LinearLayoutManager vertical
         rvSolicitudesUrgentes.setLayoutManager(new LinearLayoutManager(this));
 
+        // Obtención de datos y vinculación con el adaptador (SolicitudAdapter)
         List<Solicitud> solicitudesList = obtenerSolicitudesSimuladas();
         SolicitudAdapter adapter = new SolicitudAdapter(this, solicitudesList);
         rvSolicitudesUrgentes.setAdapter(adapter);
     }
 
+    /**
+     * Método auxiliar para generar datos de prueba.
+     */
     private List<Solicitud> obtenerSolicitudesSimuladas() {
         List<Solicitud> lista = new ArrayList<>();
 

@@ -12,6 +12,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import com.redvoluntarios.R;
 
+/**
+ * PANTALLA: DetalleSolicitudActivity
+ * ============================================================================
+ * Muestra la información detallada de la solicitud aceptada.
+ * Permite al voluntario reportar las tareas realizadas y simular la captura
+ * de evidencia fotográfica antes de pasar a la evaluación.
+ */
 public class DetalleSolicitudActivity extends AppCompatActivity {
 
     private EditText edtTareasRealizadas;
@@ -23,15 +30,17 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detalle_solicitud);
 
+        // Vinculación de vistas
         edtTareasRealizadas = findViewById(R.id.edtTareasRealizadas);
         btnAdjuntarFoto = findViewById(R.id.btnAdjuntarFoto);
         btnFinalizarYCalificar = findViewById(R.id.btnFinalizarYCalificar);
         btnVolver = findViewById(R.id.btnVolverDetalle);
         txtFotoEstado = findViewById(R.id.txtFotoEstado);
 
-        // Simular adjuntar evidencia fotográfica
+        // Evento para simular adjunción de foto de evidencia
         btnAdjuntarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +52,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
             }
         });
 
-        // Finalizar y pasar a la pantalla de Calificación/Reseña
+        // Evento para finalizar la tarea y abrir la evaluación
         btnFinalizarYCalificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +62,7 @@ public class DetalleSolicitudActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Uso de Intent con extras para pasar parámetros a la siguiente actividad
                 Intent intent = new Intent(DetalleSolicitudActivity.this, EvaluarSolicitudActivity.class);
                 intent.putExtra("nombreEvaluado", "María González");
                 intent.putExtra("rolEvaluado", "ADULTO_MAYOR");

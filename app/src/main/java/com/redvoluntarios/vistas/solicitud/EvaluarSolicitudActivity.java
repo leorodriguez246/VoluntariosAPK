@@ -19,6 +19,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * PANTALLA: EvaluarSolicitudActivity
+ * ============================================================================
+ * Sistema de calificación mediante estrellas (RatingBar) y comentarios de texto.
+ * Permite registrar la experiencia y evaluar la reputación del usuario.
+ */
 public class EvaluarSolicitudActivity extends AppCompatActivity {
 
     private TextView txtNombrePersonaEvaluada, txtTextoCalificacion;
@@ -30,8 +36,10 @@ public class EvaluarSolicitudActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_evaluar_solicitud);
 
+        // Vinculación de vistas
         txtNombrePersonaEvaluada = findViewById(R.id.txtNombrePersonaEvaluada);
         txtTextoCalificacion = findViewById(R.id.txtTextoCalificacion);
         rbPuntuacion = findViewById(R.id.rbPuntuacion);
@@ -39,13 +47,14 @@ public class EvaluarSolicitudActivity extends AppCompatActivity {
         btnEnviarReview = findViewById(R.id.btnEnviarReview);
         btnOmitirReview = findViewById(R.id.btnOmitirReview);
 
+        // Recepción de parámetros pasados mediante Intent Extras
         String nombreEvaluado = getIntent().getStringExtra("nombreEvaluado");
         String rolEvaluado = getIntent().getStringExtra("rolEvaluado");
         if (nombreEvaluado != null) {
             txtNombrePersonaEvaluada.setText("Evaluando a: " + nombreEvaluado);
         }
 
-        // Cambio de estrellas dinámico
+        // Escuchador de eventos del RatingBar para actualizar dinámicamente la etiqueta de calificación
         rbPuntuacion.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -61,6 +70,7 @@ public class EvaluarSolicitudActivity extends AppCompatActivity {
             }
         });
 
+        // Evento para enviar la reseña creada
         btnEnviarReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,6 +78,7 @@ public class EvaluarSolicitudActivity extends AppCompatActivity {
                 String comentario = edtComentario.getText().toString().trim();
                 String fechaActual = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
+                // Creación de la entidad Review
                 Review nuevaReview = new Review(
                         1, 101, 201, 101,
                         "Juan Pérez", nombreEvaluado != null ? nombreEvaluado : "Usuario",
@@ -79,6 +90,7 @@ public class EvaluarSolicitudActivity extends AppCompatActivity {
                         "¡Gracias! Tu calificación de " + estrellas + " ⭐ ha sido registrada para mejorar la comunidad.",
                         Toast.LENGTH_LONG).show();
 
+                // Limpiar pila y retornar a la pantalla principal
                 Intent intent = new Intent(EvaluarSolicitudActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

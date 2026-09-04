@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT: activity_crear_solicitud.xml (ConstraintLayout)
+    ===========================================================================
+    Formulario de creación de solicitud de ayuda con RadioGroup, RadioButton,
+    Spinner, TextInputLayout y ScrollView.
+-->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,6 +14,7 @@
     android:padding="20dp"
     tools:context=".vistas.adultomayor.CrearSolicitudActivity">
 
+    <!-- SECCIÓN 1: ENCABEZADO Y TÍTULOS -->
     <TextView
         android:id="@+id/txtCrearTitulo"
         android:layout_width="wrap_content"
@@ -34,6 +41,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtCrearTitulo" />
 
+    <!-- SECCIÓN 2: FORMULARIO SCROLLABLE (ScrollView + LinearLayout Vertical) -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -49,7 +57,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- PRIORIDAD -->
+            <!-- WIDGET: SELECCIÓN DE PRIORIDAD (RadioGroup + RadioButton) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,7 +95,7 @@
                     android:textColor="#D32F2F" />
             </RadioGroup>
 
-            <!-- CATEGORÍA -->
+            <!-- CONTENEDOR: SELECCIÓN DE CATEGORÍA (Spinner) -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,7 +114,7 @@
                 android:background="@android:drawable/btn_dropdown"
                 android:padding="8dp" />
 
-            <!-- DESCRIPCIÓN BREVE -->
+            <!-- CAMPO: DESCRIPCIÓN DE LA NECESIDAD (TextInputLayout) -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilDescripcion"
                 style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
@@ -125,7 +133,7 @@
                     android:inputType="textMultiLine" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- UBICACIÓN SIMULADA / CAPTURADA -->
+            <!-- INDICADOR DE UBICACIÓN GPS -->
             <TextView
                 android:id="@+id/txtUbicacionActual"
                 android:layout_width="match_parent"
@@ -140,6 +148,7 @@
         </LinearLayout>
     </ScrollView>
 
+    <!-- SECCIÓN 3: BOTONES DE ACCIÓN (MaterialButton) -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnEnviarSolicitud"
         android:layout_width="0dp"

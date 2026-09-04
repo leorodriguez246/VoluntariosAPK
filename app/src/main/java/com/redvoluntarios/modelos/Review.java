@@ -1,7 +1,10 @@
 package com.redvoluntarios.modelos;
 
 /**
- * Clase de Entidad de Modelo para representar una Calificación y Reseña de trato (1 a 5 estrellas).
+ * CLASE MODELO / ENTIDAD: Review
+ * ============================================================================
+ * Almacena las puntuaciones (1.0 a 5.0 estrellas) y reseñas escritas
+ * para calificar la experiencia y el trato entre usuarios.
  */
 public class Review {
 
@@ -12,7 +15,7 @@ public class Review {
     private String nombreEvaluador;
     private String nombreEvaluado;
     private String rolEvaluado; // 'VOLUNTARIO' o 'ADULTO_MAYOR'
-    private float puntuacion; // 1.0 a 5.0 estrellas
+    private float puntuacion; // Puntuación de 1.0 a 5.0 estrellas
     private String comentario;
     private String fecha;
 
@@ -34,7 +37,7 @@ public class Review {
         this.fecha = fecha;
     }
 
-    // Getters y Setters
+    // Métodos Encapsuladores (Getters y Setters)
     public int getIdReview() {
         return idReview;
     }

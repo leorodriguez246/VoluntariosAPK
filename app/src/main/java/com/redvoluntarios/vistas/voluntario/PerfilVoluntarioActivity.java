@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.redvoluntarios.R;
 import com.redvoluntarios.vistas.principal.MainActivity;
 
+/**
+ * PANTALLA: PerfilVoluntarioActivity
+ * ============================================================================
+ * Permite visualizar y editar la información personal del voluntario,
+ * revisar la tabla de estadísticas de impacto y cerrar sesión.
+ */
 public class PerfilVoluntarioActivity extends AppCompatActivity {
 
     private EditText edtNombre, edtEmail, edtTelefono, edtComuna;
@@ -21,8 +27,10 @@ public class PerfilVoluntarioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_perfil_voluntario);
 
+        // Vinculación de vistas
         edtNombre = findViewById(R.id.edtPerfilNombre);
         edtEmail = findViewById(R.id.edtPerfilEmail);
         edtTelefono = findViewById(R.id.edtPerfilTelefono);
@@ -31,6 +39,7 @@ public class PerfilVoluntarioActivity extends AppCompatActivity {
         btnGuardar = findViewById(R.id.btnPerfilGuardar);
         btnCerrarSesion = findViewById(R.id.btnPerfilCerrarSesion);
 
+        // Acción de cambio de foto de perfil
         btnCambiarFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +49,7 @@ public class PerfilVoluntarioActivity extends AppCompatActivity {
             }
         });
 
+        // Guardar cambios del formulario de perfil
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +72,7 @@ public class PerfilVoluntarioActivity extends AppCompatActivity {
             }
         });
 
+        // Cerrar sesión y limpiar pila de actividades mediante Flags
         btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

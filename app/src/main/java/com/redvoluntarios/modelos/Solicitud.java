@@ -1,24 +1,30 @@
 package com.redvoluntarios.modelos;
 
 /**
- * Clase de Entidad de Modelo para representar una Solicitud de Ayuda.
+ * CLASE MODELO / ENTIDAD: Solicitud
+ * ============================================================================
+ * Representa una petición de ayuda creada por un Adulto Mayor y atendida por un Voluntario.
+ * Almacena los metadatos completos requeridos para el seguimiento de la tarea.
  */
 public class Solicitud {
 
+    // Identificadores y datos del creador
     private int idSolicitud;
     private int idCreador;
     private String nombreCreador;
     private String telefonoCreador;
     private String direccion;
-    private String prioridad; // "Normal", "Alta", "Urgente"
-    private String categoria; // "Medicamentos", "Mercadería", "Compañía", "Trámites"
+
+    // Parámetros de la necesidad
+    private String prioridad; // 'Normal' o 'URGENTE'
+    private String categoria; // 'Medicamentos', 'Mercadería', 'Compañía', 'Trámites'
     private String descripcion;
     private double latitud;
     private double longitud;
     private String fechaHora;
-    private String estado; // "PENDIENTE", "EN_PROCESO", "COMPLETADA"
+    private String estado; // 'PENDIENTE', 'EN_PROCESO', 'COMPLETADA'
 
-    // Datos asignados al voluntario y reporte de ayuda
+    // Seguimiento del voluntario asignado y evidencias
     private int idVoluntario;
     private String nombreVoluntario;
     private String tareasRealizadas;
@@ -44,7 +50,7 @@ public class Solicitud {
         this.estado = estado;
     }
 
-    // Getters y Setters
+    // Métodos Encapsuladores (Getters y Setters)
     public int getIdSolicitud() {
         return idSolicitud;
     }

@@ -1,22 +1,31 @@
 package com.redvoluntarios.modelos;
 
 /**
- * Clase de Entidad de Modelo para representar un Usuario (Adulto Mayor o Voluntario).
+ * CLASE MODELO / ENTIDAD: Usuario
+ * ============================================================================
+ * Representa a un usuario del sistema (Adulto Mayor o Voluntario).
+ * En la arquitectura Android, las clases de modelo (POJO - Plain Old Java Object)
+ * encapsulan los datos y estado que se persisten localmente en SQLite o remotamente en Firebase.
  */
 public class Usuario {
 
+    // Atributos de entidad
     private int idUsuario;
     private String nombre;
     private String rut;
-    private String rol; // 'ADULTO_MAYOR' o 'VOLUNTARIO'
+    private String rol; // Identificador de rol: 'ADULTO_MAYOR' o 'VOLUNTARIO'
     private String telefono;
     private String direccion;
 
-    // Constructor vacío
+    /**
+     * Constructor vacío requerido para operaciones de reflexión y deserialización.
+     */
     public Usuario() {
     }
 
-    // Constructor completo
+    /**
+     * Constructor completo para instancias recuperadas desde base de datos.
+     */
     public Usuario(int idUsuario, String nombre, String rut, String rol, String telefono, String direccion) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
@@ -26,7 +35,9 @@ public class Usuario {
         this.direccion = direccion;
     }
 
-    // Constructor sin ID (útil para creación/inserción)
+    /**
+     * Constructor sin ID para crear nuevos usuarios antes de registrarlos en BD.
+     */
     public Usuario(String nombre, String rut, String rol, String telefono, String direccion) {
         this.nombre = nombre;
         this.rut = rut;
@@ -35,7 +46,7 @@ public class Usuario {
         this.direccion = direccion;
     }
 
-    // Getters y Setters
+    // Métodos Encapsuladores (Getters y Setters)
     public int getIdUsuario() {
         return idUsuario;
     }

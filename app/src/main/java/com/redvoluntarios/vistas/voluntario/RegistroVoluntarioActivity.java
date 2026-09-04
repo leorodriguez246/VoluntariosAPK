@@ -14,6 +14,12 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.redvoluntarios.R;
 import com.redvoluntarios.vistas.principal.MainActivity;
 
+/**
+ * PANTALLA: RegistroVoluntarioActivity
+ * ============================================================================
+ * Formulario de creación de cuenta para nuevos voluntarios.
+ * Demuestra el uso de validaciones de texto y selección obligatoria de CheckBox.
+ */
 public class RegistroVoluntarioActivity extends AppCompatActivity {
 
     private EditText edtNombre, edtEmail, edtTelefono, edtPassword;
@@ -29,6 +35,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_registro_voluntario);
 
+        // Vinculación de vistas del formulario
         edtNombre = findViewById(R.id.edtRegNombre);
         edtEmail = findViewById(R.id.edtRegEmail);
         edtTelefono = findViewById(R.id.edtRegTelefono);
@@ -38,6 +45,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
         txtVolverLogin = findViewById(R.id.txtVolverAlLogin);
         txtVolverAlMain = findViewById(R.id.txtVolverAlMain);
 
+        // Botón Registrar Cuenta
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +54,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
                 String fono = edtTelefono.getText().toString().trim();
                 String pass = edtPassword.getText().toString().trim();
 
+                // Validaciones de contenido obligatorio
                 if (nombre.isEmpty()) { edtNombre.setError("Nombre obligatorio"); return; }
                 if (email.isEmpty()) { edtEmail.setError("Correo obligatorio"); return; }
                 if (fono.isEmpty()) { edtTelefono.setError("Teléfono obligatorio"); return; }
@@ -54,6 +63,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
                     return;
                 }
 
+                // Validación de casilla de verificación (CheckBox)
                 if (!chkTerminos.isChecked()) {
                     Toast.makeText(RegistroVoluntarioActivity.this,
                             "Debes aceptar los términos y condiciones de voluntariado",
@@ -62,10 +72,11 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(RegistroVoluntarioActivity.this, "¡Registro exitoso! Ya puedes iniciar sesión.", Toast.LENGTH_LONG).show();
-                finish();
+                finish(); // Regresa a la pantalla anterior (Login)
             }
         });
 
+        // Botón volver al inicio
         txtVolverAlMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +87,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
             }
         });
 
+        // Retornar al Login
         txtVolverLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
