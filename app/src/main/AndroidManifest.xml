@@ -12,32 +12,65 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Voluntarios">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".vistas.principal.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Voluntario -->
         <activity
-            android:name=".LoginVoluntarioActivity"
+            android:name=".vistas.voluntario.LoginVoluntarioActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name=".RegistroVoluntarioActivity"
+            android:name=".vistas.voluntario.RegistroVoluntarioActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name=".RegistroAdultosActivity"
+            android:name=".vistas.voluntario.HubVoluntarioActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
-            android:name=".LoginAdultoMayor"
+            android:name=".vistas.voluntario.PerfilVoluntarioActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Adulto Mayor -->
+        <activity
+            android:name=".vistas.adultomayor.LoginAdultoMayor"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".vistas.adultomayor.RegistroAdultosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".vistas.adultomayor.CrearSolicitudActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Solicitudes y Reseñas -->
+        <activity
+            android:name=".vistas.solicitud.DetalleSolicitudActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".vistas.solicitud.EvaluarSolicitudActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

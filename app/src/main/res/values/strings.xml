@@ -16,7 +16,7 @@
     <string name="login_btn_registro">¿No tienes cuenta? Regístrate aquí</string>
     <string name="login_btn_volver">Volver al Inicio</string>
 
-    <!-- Registro -->
+    <!-- Registro Voluntario -->
     <string name="reg_titulo">Nuevo Registro</string>
     <string name="reg_subtitulo">Únete a nuestra red de apoyo</string>
     <string name="reg_hint_nombre">Nombre completo</string>
@@ -26,4 +26,62 @@
     <string name="reg_btn_registrar">Registrar Cuenta</string>
     <string name="reg_btn_login">¿Ya tienes cuenta? Ingresa aquí</string>
     <string name="reg_btn_volver">Volver al Inicio</string>
+
+    <!-- Login Adulto Mayor -->
+    <string name="login_am_titulo">Ingreso Adultos Mayores</string>
+    <string name="login_am_subtitulo">Estamos aquí para ayudarte</string>
+    <string name="login_am_hint_rut">RUT o Teléfono</string>
+    <string name="login_am_hint_password">Contraseña</string>
+    <string name="login_am_btn_ingresar">INGRESAR Y PEDIR AYUDA</string>
+    <string name="login_am_btn_registro">¿Primera vez aquí? Regístrate</string>
+
+    <!-- Registro Adulto Mayor -->
+    <string name="reg_am_titulo">Registro de Adulto Mayor</string>
+    <string name="reg_am_subtitulo">Crea tu cuenta sencilla</string>
+    <string name="reg_am_hint_nombre">Nombre y Apellido</string>
+    <string name="reg_am_hint_rut">RUT o Cédula</string>
+    <string name="reg_am_hint_telefono">Teléfono de contacto</string>
+    <string name="reg_am_hint_direccion">Dirección o Comuna</string>
+    <string name="reg_am_hint_password">Crea tu contraseña</string>
+    <string name="reg_am_btn_registrar">CREAR MI CUENTA</string>
+
+    <!-- Hub Voluntario -->
+    <string name="hub_saludo">¡Hola, Juan Pérez!</string>
+    <string name="hub_estado">Voluntario Activo • Santiago</string>
+    <string name="hub_seccion_urgentes">⚠️ Solicitudes Urgentes Cercanas</string>
+    <string name="hub_seccion_historial">📋 Mi Historial de Ayudas</string>
+    <string name="hub_btn_aceptar">Aceptar Ayuda</string>
+    <string name="hub_btn_perfil">Editar Perfil</string>
+
+    <!-- Perfil Voluntario -->
+    <string name="perfil_titulo">Mi Perfil</string>
+    <string name="perfil_subtitulo">Actualiza tus datos de contacto</string>
+    <string name="perfil_btn_guardar">Guardar Cambios</string>
+    <string name="perfil_btn_cerrar_sesion">Cerrar Sesión</string>
+    <string name="perfil_hint_comuna">Comuna / Sector</string>
+
+    <!-- Crear Solicitud (Adulto Mayor) -->
+    <string name="crear_solicitud_titulo">¿En qué necesitas ayuda hoy?</string>
+    <string name="crear_solicitud_subtitulo">Selecciona opciones simples</string>
+    <string name="crear_solicitud_prioridad">Prioridad de la ayuda:</string>
+    <string name="crear_solicitud_prioridad_normal">Normal (Hoy/Mañana)</string>
+    <string name="crear_solicitud_prioridad_urgente">🔴 URGENTE (Lo antes posible)</string>
+    <string name="crear_solicitud_categoria">Tipo de ayuda:</string>
+    <string name="crear_solicitud_hint_desc">Describe brevemente lo que necesitas...</string>
+    <string name="crear_solicitud_btn_enviar">SOLICITAR AYUDA AHORA</string>
+
+    <!-- Detalle y Reporte de Solicitud (Voluntario) -->
+    <string name="detalle_solicitud_titulo">Detalle de la Solicitud</string>
+    <string name="detalle_solicitud_seccion_info">Información del Adulto Mayor</string>
+    <string name="detalle_solicitud_seccion_reporte">Reportar Tareas Realizadas</string>
+    <string name="detalle_solicitud_hint_tareas">Escribe las tareas que realizaste para el adulto mayor...</string>
+    <string name="detalle_solicitud_btn_evidencia">📷 Adjuntar Foto de Evidencia</string>
+    <string name="detalle_solicitud_btn_finalizar">FINALIZAR Y EVALUAR TRATO</string>
+
+    <!-- Calificación y Reseña -->
+    <string name="evaluar_titulo">Calificación y Reseña</string>
+    <string name="evaluar_subtitulo">Tu opinión ayuda a mantener la comunidad segura</string>
+    <string name="evaluar_puntuacion_label">Puntuación (1 a 5 Estrellas):</string>
+    <string name="evaluar_hint_comentario">Escribe un comentario sobre el trato y la experiencia...</string>
+    <string name="evaluar_btn_guardar">ENVIAR CALIFICACIÓN</string>
 </resources>

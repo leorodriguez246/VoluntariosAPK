@@ -1,18 +1,23 @@
-package com.redvoluntarios;
+package com.redvoluntarios.vistas.voluntario;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.redvoluntarios.R;
+import com.redvoluntarios.vistas.principal.MainActivity;
+
 public class RegistroVoluntarioActivity extends AppCompatActivity {
 
     private EditText edtNombre, edtEmail, edtTelefono, edtPassword;
+    private CheckBox chkTerminos;
     private Button btnRegistrar;
     private TextView txtVolverLogin;
     private TextView txtVolverAlMain;
@@ -28,6 +33,7 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtRegEmail);
         edtTelefono = findViewById(R.id.edtRegTelefono);
         edtPassword = findViewById(R.id.edtRegPassword);
+        chkTerminos = findViewById(R.id.chkTerminos);
         btnRegistrar = findViewById(R.id.btnRegRegistrar);
         txtVolverLogin = findViewById(R.id.txtVolverAlLogin);
         txtVolverAlMain = findViewById(R.id.txtVolverAlMain);
@@ -40,7 +46,6 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
                 String fono = edtTelefono.getText().toString().trim();
                 String pass = edtPassword.getText().toString().trim();
 
-                // Validaciones de robustez de campos
                 if (nombre.isEmpty()) { edtNombre.setError("Nombre obligatorio"); return; }
                 if (email.isEmpty()) { edtEmail.setError("Correo obligatorio"); return; }
                 if (fono.isEmpty()) { edtTelefono.setError("Teléfono obligatorio"); return; }
@@ -49,36 +54,28 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Mensaje de éxito formativo
-                Toast.makeText(RegistroVoluntarioActivity.this, "¡Registro exitoso! Ya puedes iniciar sesión.", Toast.LENGTH_LONG).show();
+                if (!chkTerminos.isChecked()) {
+                    Toast.makeText(RegistroVoluntarioActivity.this,
+                            "Debes aceptar los términos y condiciones de voluntariado",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-                // Finaliza esta pantalla para retornar a la anterior (Login) de forma natural
+                Toast.makeText(RegistroVoluntarioActivity.this, "¡Registro exitoso! Ya puedes iniciar sesión.", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
-        // Escuchador para volver al main
         txtVolverAlMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 1. Crear el Intent de redirección explícito
                 Intent intent = new Intent(RegistroVoluntarioActivity.this, MainActivity.class);
-
-                // 2. Aplicar banderas para limpiar la pila de pantallas intermedias (como el Login)
-                // Esto busca una instancia existente de MainActivity en el fondo, destruye todo lo que
-                // esté encima de ella (el Login y el Registro) y la trae de vuelta al primer plano.
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-                // 3. Iniciar el viaje de navegación
                 startActivity(intent);
-
-                // 4. Finalizar la pantalla de registro actual para liberarla de la memoria
                 finish();
             }
         });
 
-
-        // Retornar al login de forma manual si ya tiene cuenta
         txtVolverLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

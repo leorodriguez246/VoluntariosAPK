@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_light"
     android:padding="24dp"
-    tools:context=".RegistroVoluntarioActivity">
+    tools:context=".vistas.voluntario.RegistroVoluntarioActivity">
 
     <TextView
         android:id="@+id/txtRegTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="@string/reg_titulo"
         android:textColor="@color/primary_blue"
         android:textSize="30sp"
@@ -25,7 +25,7 @@
         android:id="@+id/txtRegSubtitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:text="@string/reg_subtitulo"
         android:textColor="@color/text_secondary"
         android:textSize="16sp"
@@ -34,10 +34,10 @@
         app:layout_constraintTop_toBottomOf="@id/txtRegTitulo" />
 
     <ScrollView
-        android:layout_width="359dp"
-        android:layout_height="298dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="12dp"
         app:layout_constraintBottom_toTopOf="@+id/btnRegRegistrar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -113,6 +113,26 @@
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <!-- CHECKBOXES PARA CRITERIOS DE EVALUACIÓN -->
+            <CheckBox
+                android:id="@+id/chkNotificaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Deseo recibir alertas de emergencias en mi zona"
+                android:textSize="14sp"
+                android:checked="true" />
+
+            <CheckBox
+                android:id="@+id/chkTerminos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Acepto los términos y condiciones de voluntariado"
+                android:textSize="14sp"
+                android:textColor="@color/primary_blue"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </ScrollView>
 
@@ -120,14 +140,13 @@
         android:id="@+id/btnRegRegistrar"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/reg_btn_registrar"
         android:textSize="18sp"
         android:textStyle="bold"
         app:backgroundTint="@color/secondary_green"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toTopOf="@+id/txtVolverAlLogin"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
@@ -136,7 +155,7 @@
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="4dp"
         android:text="@string/reg_btn_login"
         android:textColor="@color/primary_blue"
         android:textStyle="bold"
@@ -149,7 +168,6 @@
         style="@style/Widget.Material3.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
         android:text="@string/reg_btn_volver"
         android:textColor="@color/text_secondary"
         app:layout_constraintBottom_toBottomOf="parent"

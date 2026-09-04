@@ -1,4 +1,4 @@
-package com.redvoluntarios;
+package com.redvoluntarios.vistas.voluntario;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
+import com.redvoluntarios.R;
+import com.redvoluntarios.vistas.principal.MainActivity;
 
 public class LoginVoluntarioActivity extends AppCompatActivity {
 
@@ -24,21 +27,18 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login_voluntario);
 
-        // Vinculación segura de componentes (R)
         edtEmail = findViewById(R.id.edtLoginEmail);
         edtPassword = findViewById(R.id.edtLoginPassword);
         btnIngresar = findViewById(R.id.btnLoginIngresar);
         txtIrARegistro = findViewById(R.id.txtIrARegistro);
         txtVolverAlMain = findViewById(R.id.txtVolverAlMain);
 
-        // Escuchador para ingresar
         btnIngresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String email = edtEmail.getText().toString().trim();
                 String pass = edtPassword.getText().toString().trim();
 
-                // Validación lógica básica
                 if (email.isEmpty()) {
                     edtEmail.setError("Ingrese su correo");
                     return;
@@ -48,35 +48,27 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Simulación del Login (A realizar con SQLite en la Unidad II)
                 if (email.equals("voluntario@gmail.com") && pass.equals("123456")) {
                     Toast.makeText(LoginVoluntarioActivity.this, "¡Ingreso exitoso!", Toast.LENGTH_SHORT).show();
-                    // Aquí se lanzará la pantalla de mapa de ayuda
+                    Intent intent = new Intent(LoginVoluntarioActivity.this, HubVoluntarioActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
-                    Toast.makeText(LoginVoluntarioActivity.this, "Credenciales incorrectas de prueba", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginVoluntarioActivity.this, "Credenciales incorrectas de prueba (usar voluntario@gmail.com / 123456)", Toast.LENGTH_LONG).show();
                 }
             }
         });
-        // Escuchador para volver al main
+
         txtVolverAlMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // 1. Crear el Intent de redirección explícito
                 Intent intent = new Intent(LoginVoluntarioActivity.this, MainActivity.class);
-
-                // 2. Aplicar banderas para limpiar la pila de pantallas intermedias (como el Login)
-                // Esto busca una instancia existente de MainActivity en el fondo, destruye todo lo que
-                // esté encima de ella (el Login y el Registro) y la trae de vuelta al primer plano.
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-                // 3. Iniciar el viaje de navegación
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
-
-                // 4. Finalizar la pantalla de registro actual para liberarla de la memoria
                 finish();
             }
         });
-        // Intent para abrir el Registro
+
         txtIrARegistro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
