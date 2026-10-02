@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.redvoluntarios.R;
 import com.redvoluntarios.modelos.Review;
 import com.redvoluntarios.vistas.principal.MainActivity;
+import androidx.activity.OnBackPressedCallback;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -101,6 +102,17 @@ public class EvaluarSolicitudActivity extends AppCompatActivity {
         btnOmitirReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+
+        // ------------------------------------------------------------------------
+        // GESTIÓN DEL BOTÓN ATRÁS NATIVO DEL SISTEMA
+        // ------------------------------------------------------------------------
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Al presionar atrás, tratarlo como una omisión
                 finish();
             }
         });

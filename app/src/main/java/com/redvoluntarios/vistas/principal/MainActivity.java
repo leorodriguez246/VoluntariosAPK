@@ -24,12 +24,34 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnRolMayor;
     private Button btnRolVoluntario;
+    private SesionManager sesionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Configurar tema claro por defecto
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
+
+        // --- VERIFICACIÓN DE PERSISTENCIA DE SESIÓN ---
+        sesionManager = new SesionManager(this);
+        
+        // Si el usuario ya inició sesión antes, nos saltamos esta pantalla 
+        // y lo enviamos directamente a su panel (Hub) respectivo.
+        if (sesionManager.verificarSesionActiva()) {
+            String rol = sesionManager.obtenerRolUsuario();
+            Intent intent;
+            
+            if (rol.equals("ADULTO_MAYOR")) {
+                intent = new Intent(MainActivity.this, com.redvoluntarios.vistas.adultomayor.HubAdultoMayorActivity.class);
+            } else {
+                intent = new Intent(MainActivity.this, com.redvoluntarios.vistas.voluntario.HubVoluntarioActivity.class);
+            }
+            
+            startActivity(intent);
+            finish();
+            return; // Detenemos la carga de esta pantalla
+        }
+        // ----------------------------------------------
 
         // Instanciar la interfaz gráfica XML de la pantalla principal
         setContentView(R.layout.activity_main);

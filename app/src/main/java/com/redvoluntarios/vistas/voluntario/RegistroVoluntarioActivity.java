@@ -12,7 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.redvoluntarios.R;
+import com.redvoluntarios.controladores.UsuarioController;
+import com.redvoluntarios.modelos.Usuario;
 import com.redvoluntarios.vistas.principal.MainActivity;
+import androidx.activity.OnBackPressedCallback;
 
 /**
  * PANTALLA: RegistroVoluntarioActivity
@@ -27,6 +30,8 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
     private Button btnRegistrar;
     private TextView txtVolverLogin;
     private TextView txtVolverAlMain;
+    
+    private UsuarioController usuarioController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnRegRegistrar);
         txtVolverLogin = findViewById(R.id.txtVolverAlLogin);
         txtVolverAlMain = findViewById(R.id.txtVolverAlMain);
+
+        usuarioController = new UsuarioController(this);
 
         // Botón Registrar Cuenta
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +78,22 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(RegistroVoluntarioActivity.this, "¡Registro exitoso! Ya puedes iniciar sesión.", Toast.LENGTH_LONG).show();
-                finish(); // Regresa a la pantalla anterior (Login)
+                // INTENTAMOS GUARDAR EN SQLITE A TRAVÉS DEL CONTROLADOR
+                Usuario nuevoVoluntario = new Usuario();
+                nuevoVoluntario.setNombre(nombre);
+                nuevoVoluntario.setRut(email); // Usaremos el email como llave única para el voluntario
+                nuevoVoluntario.setRol("VOLUNTARIO");
+                nuevoVoluntario.setTelefono(fono);
+                nuevoVoluntario.setDireccion("No especificada"); // Podría capturarse en otro campo
+
+                boolean esExitoso = usuarioController.registrarUsuario(nuevoVoluntario, pass);
+
+                if (esExitoso) {
+                    Toast.makeText(RegistroVoluntarioActivity.this, "¡Registro exitoso! Ya puedes iniciar sesión.", Toast.LENGTH_LONG).show();
+                    finish(); // Regresa a la pantalla anterior (Login)
+                } else {
+                    Toast.makeText(RegistroVoluntarioActivity.this, "Error: El correo ya se encuentra registrado.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -91,6 +112,17 @@ public class RegistroVoluntarioActivity extends AppCompatActivity {
         txtVolverLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                finish();
+            }
+        });
+
+        // ------------------------------------------------------------------------
+        // GESTIÓN DEL BOTÓN ATRÁS NATIVO DEL SISTEMA
+        // ------------------------------------------------------------------------
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Finaliza esta pantalla para revelar el LoginVoluntarioActivity debajo
                 finish();
             }
         });

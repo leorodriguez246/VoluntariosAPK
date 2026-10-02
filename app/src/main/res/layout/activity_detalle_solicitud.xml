@@ -26,7 +26,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnFinalizarYCalificar"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/containerAccionesIniciales"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtDetalleTitulo">
@@ -39,14 +40,14 @@
             <!-- TARJETA CON INFORMACIÓN DE LA SOLICITUD -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginBottom="16dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -132,6 +133,15 @@
                         </TableRow>
                     </TableLayout>
 
+                    <!-- MAPA VISUAL CON WEBVIEW (API NATIVA) -->
+                    <WebView
+                        android:id="@+id/webViewMapa"
+                        android:layout_width="match_parent"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:background="#E0E0E0" />
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -149,56 +159,111 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- SECCIÓN REPORTAR TAREAS Y EVIDENCIA -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/detalle_solicitud_seccion_reporte"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/primary_blue"
-                android:layout_marginBottom="8dp" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilTareasRealizadas"
-                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            <!-- SECCIÓN REPORTAR TAREAS Y EVIDENCIA (ESTADO 2: EN PROCESO) -->
+            <LinearLayout
+                android:id="@+id/containerEvidencias"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/detalle_solicitud_hint_tareas">
+                android:orientation="vertical"
+                android:visibility="gone">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edtTareasRealizadas"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detalle_solicitud_seccion_reporte"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_blue"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilTareasRealizadas"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minLines="3"
-                    android:gravity="top"
-                    android:textSize="16sp"
-                    android:inputType="textMultiLine" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="@string/detalle_solicitud_hint_tareas">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAdjuntarFoto"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="12dp"
-                android:text="@string/detalle_solicitud_btn_evidencia"
-                android:textColor="@color/primary_blue"
-                app:strokeColor="@color/primary_blue"
-                app:cornerRadius="8dp" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtTareasRealizadas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minLines="3"
+                        android:gravity="top"
+                        android:textSize="16sp"
+                        android:inputType="textMultiLine" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/txtFotoEstado"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:text="📷 Ninguna foto seleccionada aún"
-                android:textSize="13sp"
-                android:textColor="@color/text_secondary" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAdjuntarFoto"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="12dp"
+                    android:text="📷 Tomar Foto de Evidencia"
+                    android:textColor="@color/primary_blue"
+                    app:strokeColor="@color/primary_blue"
+                    app:cornerRadius="8dp" />
+
+                <ImageView
+                    android:id="@+id/imgFotoEvidencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="12dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"
+                    android:contentDescription="Vista previa de evidencia"
+                    android:background="#EEEEEE" />
+
+                <TextView
+                    android:id="@+id/txtFotoEstado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="📷 Ninguna foto seleccionada aún"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
+    <!-- CONTENEDOR DE ACCIONES (ANCLADO AL FONDO) -->
+    <!-- ESTADO 1: NUEVA (Botones de Aceptar/Rechazar) -->
+    <LinearLayout
+        android:id="@+id/containerAccionesIniciales"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toTopOf="@+id/btnVolverDetalle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRechazarAyuda"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:text="RECHAZAR"
+            android:textColor="#D32F2F"
+            app:strokeColor="#D32F2F" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAceptarAyuda"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:text="ACEPTAR AYUDA"
+            android:textStyle="bold"
+            app:backgroundTint="@color/primary_blue" />
+    </LinearLayout>
+
+    <!-- ESTADO 2: FINALIZAR (Botón principal) -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnFinalizarYCalificar"
         android:layout_width="0dp"
@@ -207,6 +272,7 @@
         android:text="@string/detalle_solicitud_btn_finalizar"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:visibility="gone"
         app:backgroundTint="@color/secondary_green"
         app:cornerRadius="12dp"
         app:layout_constraintBottom_toTopOf="@+id/btnVolverDetalle"

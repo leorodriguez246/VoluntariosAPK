@@ -12,7 +12,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.redvoluntarios.R;
+import com.redvoluntarios.controladores.UsuarioController;
+import com.redvoluntarios.modelos.Usuario;
 import com.redvoluntarios.vistas.principal.MainActivity;
+import androidx.activity.OnBackPressedCallback;
 
 /**
  * PANTALLA: RegistroAdultosActivity
@@ -27,6 +30,8 @@ public class RegistroAdultosActivity extends AppCompatActivity {
     private Button btnRegistrar;
     private TextView txtVolverLogin;
     private TextView txtVolverAlMain;
+    
+    private UsuarioController usuarioController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,8 @@ public class RegistroAdultosActivity extends AppCompatActivity {
         btnRegistrar = findViewById(R.id.btnRegAmRegistrar);
         txtVolverLogin = findViewById(R.id.txtVolverAlLoginAm);
         txtVolverAlMain = findViewById(R.id.txtVolverAlMainAm);
+
+        usuarioController = new UsuarioController(this);
 
         // Botón Registrar Cuenta
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -67,13 +74,29 @@ public class RegistroAdultosActivity extends AppCompatActivity {
                 // Validación de CheckBox
                 if (!chkTerminosAm.isChecked()) {
                     Toast.makeText(RegistroAdultosActivity.this,
-                            "Debe aceptar los términos de uso asistido",
-                            Toast.LENGTH_LONG).show();
+                            "Debe aceptar los términos de condiciones",  Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                Toast.makeText(RegistroAdultosActivity.this, "¡Registro exitoso! Ya puedes ingresar.", Toast.LENGTH_LONG).show();
-                finish();
+                // INTENTAMOS GUARDAR EN SQLITE A TRAVÉS DEL CONTROLADOR
+                String direccion = edtDireccion.getText().toString().trim();
+                if (direccion.isEmpty()) direccion = "No especificada";
+
+                Usuario nuevoAdulto = new Usuario();
+                nuevoAdulto.setNombre(nombre);
+                nuevoAdulto.setRut(rut); // La llave única
+                nuevoAdulto.setRol("ADULTO_MAYOR");
+                nuevoAdulto.setTelefono(fono);
+                nuevoAdulto.setDireccion(direccion);
+
+                boolean esExitoso = usuarioController.registrarUsuario(nuevoAdulto, pass);
+
+                if (esExitoso) {
+                    Toast.makeText(RegistroAdultosActivity.this, "¡Registro exitoso! Ya puedes ingresar.", Toast.LENGTH_LONG).show();
+                    finish();
+                } else {
+                    Toast.makeText(RegistroAdultosActivity.this, "Error: Este RUT ya se encuentra registrado.", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -92,6 +115,18 @@ public class RegistroAdultosActivity extends AppCompatActivity {
                 Intent intent = new Intent(RegistroAdultosActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        // ------------------------------------------------------------------------
+        // GESTIÓN DEL BOTÓN ATRÁS NATIVO DEL SISTEMA
+        // ------------------------------------------------------------------------
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Al presionar el botón físico Atrás en el registro, simplemente 
+                // cerramos esta pantalla para que se revele el Login que está debajo.
                 finish();
             }
         });

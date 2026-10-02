@@ -3,6 +3,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.redvoluntarios">
 
+    <!-- PERMISOS DE RED -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- PERMISOS DE HARDWARE Y SENSORES -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature android:name="android.hardware.camera.any" android:required="false" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
+    <uses-feature android:name="android.hardware.location.gps" android:required="false" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -52,6 +67,11 @@
 
         <activity
             android:name=".vistas.adultomayor.RegistroAdultosActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".vistas.adultomayor.HubAdultoMayorActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 

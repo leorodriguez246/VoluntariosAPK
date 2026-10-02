@@ -170,9 +170,12 @@
 
             <!-- HISTORIAL ITEM 1 -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHistorial1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="1dp">
 
@@ -217,9 +220,12 @@
 
             <!-- HISTORIAL ITEM 2 -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHistorial2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="1dp">
 

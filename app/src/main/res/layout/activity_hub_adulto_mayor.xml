@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    LAYOUT: activity_hub_adulto_mayor.xml (ConstraintLayout)
+    ===========================================================================
+    Panel principal del adulto mayor. Contiene un botón gigante para llamadas
+    de emergencia (Pánico) y accesos directos para pedir ayuda general.
+-->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_light"
+    tools:context=".vistas.adultomayor.HubAdultoMayorActivity">
+
+    <!-- SECCIÓN 1: ENCABEZADO -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardHeaderAm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/secondary_green"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/txtAmNombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="¡Hola, María!"
+                android:textColor="@color/white"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btnCerrarSesionAm"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtAmEstado"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="¿En qué te podemos ayudar hoy?"
+                android:textColor="#E8F5E9"
+                android:textSize="16sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btnCerrarSesionAm"
+                app:layout_constraintTop_toBottomOf="@id/txtAmNombre" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCerrarSesionAm"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:icon="@android:drawable/ic_lock_power_off"
+                app:iconTint="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- SECCIÓN 2: BOTÓN DE PÁNICO (VIBRACIÓN + LLAMADA) -->
+    <TextView
+        android:id="@+id/txtLabelPanico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="EN CASO DE EMERGENCIA"
+        android:textColor="#D32F2F"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardHeaderAm" />
+
+    <!-- Usamos un CardView circular simulado por un botón gigante -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPanico"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="16dp"
+        android:text="S O S"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:backgroundTint="#D32F2F"
+        app:cornerRadius="110dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtLabelPanico" />
+
+    <TextView
+        android:id="@+id/txtDescPanico"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="24dp"
+        android:text="Al presionar el botón rojo, llamaremos automáticamente al número de emergencia configurado."
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnPanico" />
+
+    <!-- SECCIÓN 3: PEDIR AYUDA A VOLUNTARIOS -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIrACrearSolicitud"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_margin="24dp"
+        android:text="Pedir Ayuda a Voluntarios"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/primary_blue"
+        app:cornerRadius="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

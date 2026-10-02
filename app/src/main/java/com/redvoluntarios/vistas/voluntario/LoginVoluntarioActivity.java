@@ -7,11 +7,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.redvoluntarios.vistas.principal.SesionManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import com.redvoluntarios.R;
+import com.redvoluntarios.controladores.UsuarioController;
+import com.redvoluntarios.modelos.Usuario;
 import com.redvoluntarios.vistas.principal.MainActivity;
+import androidx.activity.OnBackPressedCallback;
 
 /**
  * PANTALLA: LoginVoluntarioActivity
@@ -25,6 +29,8 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
     private Button btnIngresar;
     private TextView txtVolverAlMain;
     private TextView txtIrARegistro;
+    private SesionManager sesionManager;
+    private UsuarioController usuarioController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,10 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login_voluntario);
+        
+        // Instanciar el gestor de sesiones y el controlador de usuarios
+        sesionManager = new SesionManager(this);
+        usuarioController = new UsuarioController(this);
 
         // Vinculación de vistas
         edtEmail = findViewById(R.id.edtLoginEmail);
@@ -57,15 +67,26 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Autenticación de prueba (A conectar con SQLite / Firebase)
-                if (email.equals("voluntario@gmail.com") && pass.equals("123456")) {
+                // Autenticación real contra Base de Datos SQLite
+                Usuario voluntario = usuarioController.iniciarSesion(email, pass, "VOLUNTARIO");
+
+                if (voluntario != null) {
+                    // Guardar persistencia de sesión exitosa usando los datos reales
+                    sesionManager.crearSesion("VOLUNTARIO", voluntario.getNombre());
+                    
                     Toast.makeText(LoginVoluntarioActivity.this, "¡Ingreso exitoso!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginVoluntarioActivity.this, HubVoluntarioActivity.class);
                     startActivity(intent);
                     finish(); // Cerrar el login para no volver atrás con el botón físico
+                } else if (email.equals("voluntario@gmail.com") && pass.equals("123456")) {
+                    // Credencial de emergencia/resguardo si la base de datos está vacía
+                    sesionManager.crearSesion("VOLUNTARIO", "Juan Pérez");
+                    Toast.makeText(LoginVoluntarioActivity.this, "Ingreso modo DEMO", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginVoluntarioActivity.this, HubVoluntarioActivity.class));
+                    finish();
                 } else {
                     Toast.makeText(LoginVoluntarioActivity.this,
-                            "Credenciales incorrectas de prueba (usar voluntario@gmail.com / 123456)",
+                            "Credenciales incorrectas o cuenta no registrada",
                             Toast.LENGTH_LONG).show();
                 }
             }
@@ -88,6 +109,19 @@ public class LoginVoluntarioActivity extends AppCompatActivity {
                 Intent intent = new Intent(LoginVoluntarioActivity.this, RegistroVoluntarioActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
+            }
+        });
+
+        // ------------------------------------------------------------------------
+        // GESTIÓN DEL BOTÓN ATRÁS NATIVO DEL SISTEMA
+        // ------------------------------------------------------------------------
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                // Al presionar el botón físico Atrás, volver al inicio principal (MainActivity)
+                Intent intent = new Intent(LoginVoluntarioActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
